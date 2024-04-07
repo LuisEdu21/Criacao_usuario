@@ -64,6 +64,17 @@ def criar_tabela(conn_postgresql, cursor_postgresql):
         conn_postgresql.commit()
         return 'Tabela criada'
 
+def Inserir_usuario(conn_postgresql, cursor_postgresql, sexo,name_first,name_last,city,state,country,email,date,age):
+
+    sql = """INSERT INTO teste.cliente_teste
+(name_first, name_last, city, state, country, email, data_nascimento, age)
+VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', {})""".format(name_first,name_last,city,state,country,email,date,age)
+
+    cursor_postgresql.execute(sql)
+    conn_postgresql.commit()
+
+    return
+
 def run():
 
     conn_postgresql = Abrir_conexao()
@@ -87,6 +98,8 @@ def run():
     dob = resultado[0]['dob']
     date = dob['date']
     age = dob['age']
+
+    Inserir_usuario(conn_postgresql, cursor_postgresql, sexo,name_first,name_last,city,state,country,email,date,age)
 
     return
 
