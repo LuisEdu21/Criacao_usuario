@@ -1,3 +1,4 @@
+import json
 import requests
 import psycopg2
 import banco
@@ -26,9 +27,7 @@ def usuarios():
 
     response = requests.request("GET", url, headers=headers, data=payload)
 
-    print(response.text)
-
-    return
+    return response.text
 
 def tabela_existe(cursor_postgresql):
     
@@ -73,5 +72,22 @@ def run():
     criar_tabela(conn_postgresql=conn_postgresql,cursor_postgresql=cursor_postgresql)
 
     usuario = usuarios()
+    usuario_json = json.loads(usuario)
+
+    resultado = usuario_json['results']
+    sexo = resultado[0]['gender']
+    name = resultado[0]['name']
+    name_first = name['first']
+    name_last = name['last']
+    location = resultado[0]['location']
+    city = location['city']
+    state = location['state']
+    country = location['country']
+    email = resultado[0]['email']
+    dob = resultado[0]['dob']
+    date = dob['date']
+    age = dob['age']
 
     return
+
+run()
