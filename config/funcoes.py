@@ -67,8 +67,8 @@ def criar_tabela(conn_postgresql, cursor_postgresql):
 def Inserir_usuario(conn_postgresql, cursor_postgresql, sexo,name_first,name_last,city,state,country,email,date,age):
 
     sql = """INSERT INTO teste.cliente_teste
-    (name_first, name_last, city, state, country, email, data_nascimento, age)
-    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', {})""".format(name_first,name_last,city,state,country,email,date,age)
+    (name_first, name_last, city, state, country, email, data_nascimento, age, sexo)
+    VALUES('{}', '{}', '{}', '{}', '{}', '{}', '{}', {}, '{}')""".format(name_first,name_last,city,state,country,email,date,age,sexo)
 
     cursor_postgresql.execute(sql)
     conn_postgresql.commit()

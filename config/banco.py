@@ -11,6 +11,6 @@ def conexao_postgresql():
     password = os.getenv('password_postgresql')
     # sslmode = os.getenv('sslmode_postgresql')
 
-    conn_string_postgresql = 'host={0} user={1} dbname={2} password={3}'.format(host,name,user,password)
+    conn_string_postgresql = 'host={0} user={1} dbname={2} password={3}'.format(host,user,name,password)
     
     return conn_string_postgresql
